@@ -144,7 +144,7 @@ header {
 /* Custom Buttons */
 button {
     background: green;
-    color: black;
+    color: white;
     border: none;
     padding: 8px 12px;
     border-radius: 4px;
@@ -210,7 +210,7 @@ input[type="file"] {
 /* Chat Header Styling */
 .chat-header {
     /* color: white; */
-    color: black;
+    color: white;
     background: green;
     font-size: 25px;
     font-weight: bold;
@@ -278,7 +278,7 @@ input[type="file"] {
 
 .option-button {
     background-color: #4CAF50;
-    color: black;
+    color: white;
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
@@ -305,7 +305,7 @@ input[type="file"] {
 /* Style for the Back Button */
 .back-button {
     background-color: green; /* Background color */
-    color: black; /* Text color */
+    color: white; /* Text color */
     font-size: 15px; /* Font size */
     font-weight: bold; /* Bold text */
     border: none; /* Remove border */
@@ -325,7 +325,7 @@ input[type="file"] {
 /* Style for the Restart Button */
 .restart-button {
     background-color: green; /* Background color */
-    color: black; /* Text color */
+    color: white; /* Text color */
     font-size: 15px; /* Font size */
     font-weight: bold; /* Bold text */
     border: none; /* Remove border */
