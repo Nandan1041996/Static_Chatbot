@@ -1,0 +1,343 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background: rgb(246, 228, 207);
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling on the whole page */
+}
+
+.container {
+    /* max-width: 1000px; */
+    max-width: 850px;
+    margin: 20px auto;
+    background: #fffff0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 480px; /* Increased height for the container */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.left-panel h1 {
+    background-color: green;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 0 20px;
+}
+
+.main-content {
+    display: flex;
+    gap: 40px;
+}
+
+.left-panel {
+    width: 28%;
+    background-color: rgb(246, 228, 207);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 450px;
+}
+
+.right-panel {
+    /* width: 65%; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Chatbox Styling */
+.chat-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    height: 400px; /* Fixed height for the chatbox */
+    max-height: 400px; /* Ensure it doesn't grow beyond this height */
+    overflow-y: auto; /* Adds vertical scroll when content overflows */
+    background: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Customize scrollbar for Webkit browsers */
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 4px;
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
+
+/* Message Blocks Styling */
+.message-block {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: flex-start; /* Align messages at the start of the line */
+}
+
+.message-block.user {
+    justify-content: flex-end;
+}
+
+.message-block.bot {
+    justify-content: flex-start;
+}
+
+.message-block .message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+.message-block.user .message {
+    background-color: #d1e7dd;
+    color: #055160;
+    text-align: right;
+}
+
+.message-block.bot .message {
+    background-color: #f0f4f8;
+    color: #333;
+    text-align: left;
+}
+
+/* Option Buttons */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.option-button {
+    background-color: #c7e1ea;
+    color: black;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s ease;
+}
+
+.option-button:hover {
+    background-color: darkturquoise;
+}
+
+/* Custom Buttons */
+button {
+    background: green;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: darkgreen;
+}
+
+/* Styling for inputs like select and file */
+select,
+input[type="file"] {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* File List Styling */
+.file-list ul {
+    padding: 0;
+    list-style-type: disc;
+}
+
+.file-item {
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.file-item a {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.file-item a:hover {
+    color: #c82333;
+}
+
+
+/* Container for header and logo */
+/* Container for header and logos */
+.header-container {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Logos on ends, header in the center */
+    width: 100%; /* Full width of the container */
+    padding: 0 10px; /* Optional: Add padding for spacing */
+    margin-top: -10px;
+}
+
+/* Chat Header Styling */
+.chat-header {
+    /* color: white; */
+    color: black;
+    background: green;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
+    text-align: center; /* Center text */
+    display: inline-block; /* Ensure width adjusts to content */
+    margin: 0 auto; /* Center header in available space */
+}
+
+/* Logo Styling for Left and Right */
+.logo-left, .logo-right {
+    height: 80px;
+    width: 80px;
+    margin: 0; /* Remove default margin */
+    flex-shrink: 0; /* Prevent logos from shrinking */
+    margin-left: -15px;
+}
+
+
+
+/* New Chat Message Alignments */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+    padding: 5px;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    max-width: 80%;
+    padding: 0px 4px;
+    margin: 1px 1px;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: #f1f1f1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-message.left {
+    align-self: flex-start;
+    background-color: #d4f1d4;
+    font-size: 15px;
+}
+
+.chat-message.right {
+    align-self: flex-end;
+    background-color: #d4f1d4;
+    /* background-color: #add8e6; */
+    font-size: 15px;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1px;
+}
+
+.option-button {
+    background-color: #4CAF50;
+    color: black;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s ease;
+}
+
+.option-button:hover {
+    background-color: darkgreen;
+}
+
+/* Style for the Back Button */
+/* Container to align buttons */
+.button-container {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space buttons to opposite ends */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Full width container */
+    margin: 10px 0; /* Optional: Add margin around the container */
+    margin-top: -8px;
+}
+
+/* Style for the Back Button */
+.back-button {
+    background-color: green; /* Background color */
+    color: black; /* Text color */
+    font-size: 15px; /* Font size */
+    font-weight: bold; /* Bold text */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    padding: 4px 14px; /* Consistent padding */
+    margin: 0; /* No margin */
+    height: auto; /* Adjust height to content */
+    text-align: center; /* Center-align text */
+    text-decoration: none; /* Remove underline */
+}
+
+.back-button:hover {
+    background-color: darkgreen; /* Background color on hover */
+}
+
+/* Style for the Restart Button */
+.restart-button {
+    background-color: green; /* Background color */
+    color: black; /* Text color */
+    font-size: 15px; /* Font size */
+    font-weight: bold; /* Bold text */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    padding: 4px 14px; /* Consistent padding */
+    margin: 0; /* No margin */
+    height: auto; /* Adjust height to content */
+    text-align: center; /* Center-align text */
+    text-decoration: none; /* Remove underline */
+}
+
+.restart-button:hover {
+    background-color: darkgreen; /* Background color on hover */
+}
