@@ -10,14 +10,7 @@ import json
 import pickle
 import secrets
 import pandas as pd
-
-
-
-
-
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 from flask import Flask, request, render_template, session
-import pandas as pd
 from markupsafe import Markup
 
 app = Flask(__name__)
@@ -34,58 +27,6 @@ data = {
     'Questions Based On Module And Area': data_df.groupby(['Subject', 'Module', 'Area'])['Question'].apply(lambda x: list(set(x))).to_dict(),
     'Answer Of Question Based On Area And Module': data_df.groupby(['Subject', 'Module', 'Area', 'Question'])['Answer'].first().to_dict()
 }
-
-# @app.route('/')
-# def chatbot_greeting():
-#     session.clear()  # Clear session on restart
-#     subjects = data['Select Subject']
-#     session['step'] = 0  # Initial step
-#     return render_template('index.html', subjects=subjects, step=0)
-
-# @app.route('/select-module', methods=['POST'])
-# def select_subject():
-#     selected_subject = request.form.get('selected_subject')
-#     session['selected_subject'] = selected_subject
-#     session['step'] = 1
-#     modules = data['Select Module'].get(selected_subject, [])
-#     return render_template('index.html', selected_subject=selected_subject, modules=modules, step=1)
-
-
-# @app.route('/select-area', methods=['POST'])
-# def select_area():
-#     module = request.form.get('module')
-#     subject = session.get('selected_subject')
-#     session['module'] = module
-#     session['step'] = 2  # Update to step 2
-#     areas = data['Select Area'].get((subject, module), [])
-#     return render_template('index.html', module=module, areas=areas, step=2)
-
-
-
-# @app.route('/get-questions', methods=['POST'])
-# def get_questions():
-#     module = request.form.get('module')
-#     area = request.form.get('area')
-#     subject = session.get('selected_subject')
-#     session['area'] = area
-#     session['step'] = 3  # Update to step 3
-#     questions = data['Questions Based On Module And Area'].get((subject, module, area), [])
-#     return render_template('index.html', module=module, area=area, questions=questions, step=3)
-
-# @app.route('/get-answer', methods=['POST'])
-# def get_answer():
-#     module = request.form.get('module')
-#     area = request.form.get('area')
-#     question = request.form.get('question')
-#     subject = session.get('selected_subject')
-#     session['question'] = question
-#     session['step'] = 4  # Update to step 4
-#     drive_link = "https://docs.google.com/spreadsheets/d/1Ud_QIXa1EtPW7LsADfrwW65S_GBaCu5D/edit?gid=4307716#gid=4307716"
-#     answer = data['Answer Of Question Based On Area And Module'].get((subject, module, area, question), 'No answer available')
-#     link_html = f'<a href="{drive_link}" target="_blank">Document Link</a>'
-#     final_answer = Markup(f"{answer}<br><br>For more details, refer to this {link_html}.")
-#     return render_template('index.html', module=module, area=area, question=question, answer=final_answer, step=4)
-
 
 @app.route('/')
 def chatbot_greeting():
@@ -175,4 +116,4 @@ def go_back():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
