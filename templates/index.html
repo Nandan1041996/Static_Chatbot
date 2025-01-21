@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question-Answer Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <main class="main-content">
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                
+               <!-- Chat Header with Left and Right Logos -->
+                    <div class="header-container">
+                        <img src="{{ url_for('static', filename='GHCL final Logo.png') }}" alt="GHCL Logo Left" class="logo-left">
+                        <span class="chat-header">
+                            Question-Answer Chatbot
+                        </span>
+                        <img src="{{ url_for('static', filename='GHCL final Logo.png') }}" alt="GHCL Logo Right" class="logo-right">
+                    </div>
+
+
+
+                <!-- Chat Container -->
+                <!-- <div class="chat-container"> -->
+
+
+                    <!-- Step 0: Subject Selection -->
+
+                    <div class="chat-container">
+                        <!-- Display Selected Subject when Step >= 0 -->
+                        {% if selected_subject %}
+                        <div class="chat-message left">
+                            <p><strong>Your selected Subject is:</strong> {{ selected_subject }}</p>
+                        </div>
+                        {% endif %}
+                    
+                        {% if step == 0 %}
+                        <div class="chat-message left">
+                            <p>Hey hi, How may I help you!! Please Select a Subject:</p>
+                            <div class="subject-buttons">
+                                {% for subject in subjects %}
+                                    <button 
+                                        class="subject-button" 
+                                        onclick="submitFormWithValue('module-selection-form', '{{ subject }}')">
+                                        {{ subject }}
+                                    </button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+
+                        <!-- Display Selected Subject only when a subject is selected -->
+                            <!-- {% if selected_subject %}
+                            <div class="chat-message left">
+                                <p><strong>Your selected Subject is:</strong> {{ selected_subject }}</p>
+                            </div>
+                            {% endif %}
+
+                            {% if step == 0 %}
+                            <div class="chat-message left">
+                                <p>Hey hi, How may I help you!! Please Select a Subject:</p>
+                                <div class="subject-buttons">
+                                    {% for subject in subjects %}
+                                        <button 
+                                            class="subject-button" 
+                                            onclick="submitFormWithValue('module-selection-form', '{{ subject }}')">
+                                            {{ subject }}
+                                        </button>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %} -->
+
+                    
+                        <!-- Display Selected Module when Step >= 1 -->
+                        {% if module %}
+                        <div class="chat-message left">
+                            <p><strong>Your selected Module is:</strong> {{ module }}</p>
+                        </div>
+                        {% endif %}
+                    
+                        <form id="back-form" action="/go-back" method="post" style="display: none;">
+                            <input type="hidden" id="back-form-step" name="back_to_step">
+                        </form>
+                    
+                        <!-- Step 1: Select Module -->
+                        {% if step == 1 %}
+                        <div class="chat-message left">
+                            <h4>Select a Module</h4>
+                            <div class="button-group">
+                                {% for module in modules %}
+                                    <button type="button" class="option-button" onclick="submitFormWithValue('domain-form', '{{ module }}')">{{ module }}</button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    
+                        <!-- Display Area -->
+                        {% if area %}
+                        <div class="chat-message left">
+                            <p><strong>Your selected Area is:</strong> {{ area }}</p>
+                        </div>
+                        {% endif %}
+                    
+                        <!-- Step 2: Select Area -->
+                        {% if step == 2 %}
+                        <div class="chat-message left">
+                            <h4>Select an Area for Module: {{ module }}</h4>
+                            <div class="button-group">
+                                {% for area in areas %}
+                                    <button type="button" class="option-button" onclick="submitFormWithValue('area-form', '{{ area }}')">{{ area }}</button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    
+                        <!-- Display Question -->
+                        {% if question %}
+                        <div class="chat-message left">
+                            <p><strong>Your selected Question is:</strong> {{ question }}</p>
+                        </div>
+                        {% endif %}
+                    
+                        <!-- Step 3: Select Question -->
+                        {% if step == 3 %}
+                        <div class="chat-message left">
+                            <h4>Select a Question for Area: {{ area }}</h4>
+                            <div class="button-group">
+                                {% for question in questions %}
+                                    <button type="button" class="option-button" onclick="submitFormWithValue('question-form', '{{ question }}')">{{ question }}</button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    
+                        <!-- Step 4: Display Answer -->
+                        {% if step == 4 %}
+                        <div class="chat-message right">
+                            <p style="margin: 4px;"><strong>Answer:</strong></p>
+                            <p style="margin: 7px;">{{ answer|safe }}</p> <!-- Safely render HTML content -->
+                          </div>
+                        {% endif %}
+                    </div>
+                    
+                <div class="button-container">
+                    {% if step > 0 %}
+                        <form id="back-form" method="POST" action="/go-back">
+                            <button type="submit" class="back-button">Go Back</button>
+                        </form>
+                    {% endif %}
+                    <a href="/" class="restart-button">Restart Chat</a>
+                </div>
+                
+
+
+            </div>
+        </main>
+
+        <!-- Hidden Forms for Step Handling -->
+        
+        <form id="module-selection-form" method="post" action="/select-module" style="display: none;">
+            <input type="hidden" id="domain-selection-input" name="selected_subject">
+        </form>
+      
+        <form id="domain-form" action="/select-area" method="post" style="display: none;">
+            <input type="hidden" id="domain-form-input" name="module">
+        </form>
+        <form id="area-form" action="/get-questions" method="post" style="display: none;">
+            <input type="hidden" id="area-form-module" name="module" value="{{ module }}">
+            <input type="hidden" id="area-form-input" name="area">
+        </form>
+        <form id="question-form" action="/get-answer" method="post" style="display: none;">
+            <input type="hidden" id="question-form-module" name="module" value="{{ module }}">
+            <input type="hidden" id="question-form-area" name="area" value="{{ area }}">
+            <input type="hidden" id="question-form-input" name="question">
+        </form>
+        <form id="back-form" action="/go-back" method="post" style="display: none;">
+            <input type="hidden" id="back-form-step" name="back_to_step">
+        </form>
+    </div>
+
+    <script>
+        function submitFormWithValue(formId, value) {
+            const form = document.getElementById(formId);
+    
+            if (formId === 'module-selection-form') {
+                document.getElementById('domain-selection-input').value = value;
+            } else if (formId === 'domain-form') {
+                document.getElementById('domain-form-input').value = value;
+            } else if (formId === 'area-form') {
+                document.getElementById('area-form-input').value = value;
+            } else if (formId === 'question-form') {
+                document.getElementById('question-form-input').value = value;
+            } else if (formId === 'back-form') {
+                document.getElementById('back-form-step').value = value; // Pass the step (e.g., 'subject', 'area')
+            }
+    
+            form.submit();
+        }
+    </script>
+    
+    
+</body>
+</html>
+
+
+
+
